@@ -10,26 +10,42 @@ def createSin(fr,sec):
     relfr = fr/sps
     for i in range(sec):
         for j in range(sps):
-            #print(math.sin(x))
             ret = np.append(ret,math.sin(relfr*x))
             x += sps/fr
         print("sec: ", i)
     return ret
-#
-#def createSquare(fr,sec):
-#    ret = np.array([])
-#    x = 0
-#    for i in range(sec):
-#        for j in range(sps):
-#            if(x % fr == )
-#            ret = np.append(ret,math.sin(fr*x))
-#            x += 1
-#        print("sec: ", i)
-#    return ret
-            
+
+def createSquare(fr,sec):
+    ret = np.array([])
+    x = 0
+    relfr = fr/sps
+    for i in range(sec):
+        for j in range(sps):
+            if (math.sin(relfr*x) > 0 ):
+                ret = np.append(ret,1)
+            else:
+                ret = np.append(ret,-1)
+            x += sps/fr
+        print("sec: ", i)
+    return ret
+
+def createSaw(fr,sec):
+    ret = np.array([])
+    x = 0
+    relfr = fr/sps
+    for i in range(sec):
+        for j in range(sps):
+            if (math.sin(relfr*x) < 0 ):
+                ret = np.append(ret,1)
+                x = 0
+            else:
+                ret = np.append(ret,-x*relfr+1)
+            x += sps/fr
+        print("sec: ", i)
+    return ret
 
 
-data = createSin(4000,3)
+data = createSaw(4000,3)
 print(data)
 
 
